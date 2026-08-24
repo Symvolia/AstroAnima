@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { CosmicBackground } from '../components/CosmicBackground';
 import { CosmicLoader } from '../components/CosmicLoader';
 import { ScreenHeader } from '../components/ScreenHeader';
+import { UpdateCard } from '../components/UpdateCard';
 import { useI18n } from '../i18n';
 import { useStore } from '../store/useStore';
 import { colors, radii } from '../theme';
@@ -29,11 +30,11 @@ export function DailyReadingScreen() {
           {loadingSky && !reading ? <CosmicLoader label={copy.reading.weaving} /> : null}
           {reading ? (
             <>
-              <Block title={copy.reading.general} body={reading.general} />
-              <Block title={copy.reading.love} body={reading.love} />
-              <Block title={copy.reading.work} body={reading.work} />
-              <Block title={copy.reading.health} body={reading.health} />
-              <Block title={copy.reading.spirit} body={reading.spiritual} />
+              <UpdateCard kicker={copy.reading.general} body={reading.general} />
+              <UpdateCard kicker={copy.reading.love} body={reading.love} />
+              <UpdateCard kicker={copy.reading.work} body={reading.work} />
+              <UpdateCard kicker={copy.reading.health} body={reading.health} />
+              <UpdateCard kicker={copy.reading.spirit} body={reading.spiritual} />
               <View style={styles.luckRow}>
                 <Luck label={copy.reading.number} value={String(reading.luckyNumber)} />
                 <Luck label={copy.reading.color} value={reading.luckyColor} />
@@ -44,15 +45,6 @@ export function DailyReadingScreen() {
         </ScrollView>
       </SafeAreaView>
     </CosmicBackground>
-  );
-}
-
-function Block({ title, body }: { title: string; body: string }) {
-  return (
-    <View style={styles.block}>
-      <Text style={styles.kicker}>{title}</Text>
-      <Text style={styles.body}>{body}</Text>
-    </View>
   );
 }
 
@@ -68,16 +60,6 @@ function Luck({ label, value }: { label: string; value: string }) {
 const styles = StyleSheet.create({
   safe: { flex: 1 },
   content: { padding: 20, paddingBottom: 48, gap: 12 },
-  block: {
-    padding: 16,
-    borderRadius: radii.lg,
-    borderWidth: 1,
-    borderColor: colors.cardBorder,
-    backgroundColor: colors.surface,
-    gap: 8,
-  },
-  kicker: { color: colors.gold, letterSpacing: 1.2, textTransform: 'uppercase', fontSize: 11 },
-  body: { color: colors.cream, lineHeight: 22, fontSize: 15 },
   luckRow: { flexDirection: 'row', gap: 8 },
   luck: {
     flex: 1,

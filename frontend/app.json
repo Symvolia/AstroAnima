@@ -15,7 +15,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#1A0B2E",
+        "backgroundColor": "#000000",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -25,7 +25,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png",
-      "bundler": "metro"
+      "bundler": "metro",
+      "output": "single"
+    },
+    "experiments": {
+      "baseUrl": "/AstroAnima"
     },
     "plugins": [
       "expo-font",
@@ -33,7 +37,7 @@
       [
         "expo-notifications",
         {
-          "color": "#D4AF37"
+          "color": "#7B2CBF"
         }
       ],
       [

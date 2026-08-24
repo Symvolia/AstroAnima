@@ -43,7 +43,7 @@ export function SkyMapScreen() {
           <Text style={styles.sub}>{copy.sky.sub(geo.lat.toFixed(2), geo.lng.toFixed(2))}</Text>
           <View style={styles.map}>
             <Svg width={size} height={size}>
-              <Circle cx={cx} cy={cy} r={maxR} fill="rgba(7,4,20,0.7)" stroke={colors.gold} />
+              <Circle cx={cx} cy={cy} r={maxR} fill="rgba(0,0,0,0.7)" stroke={colors.gold} />
               <Circle cx={cx} cy={cy} r={maxR * 0.66} fill="none" stroke="rgba(212,175,55,0.25)" />
               <Circle cx={cx} cy={cy} r={maxR * 0.33} fill="none" stroke="rgba(212,175,55,0.2)" />
               <Line x1={cx} y1={cy - maxR} x2={cx} y2={cy + maxR} stroke="rgba(155,126,217,0.35)" />

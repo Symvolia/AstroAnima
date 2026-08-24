@@ -142,7 +142,7 @@ export const PLANETS: PlanetMeta[] = [
     cycle: 'Circa 18,6 anni per il giro dello zodiaco',
     retrograde: 'Il nodo medio è sempre retrogrado',
     retrogradeEffect: 'Il Nodo Nord indica dove andare, anche quando il cammino sembra contrario.',
-    color: '#D4AF37',
+    color: '#C4A0FF',
   },
 ];
 

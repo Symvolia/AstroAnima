@@ -6,10 +6,12 @@ export function ScreenHeader({
   title,
   lead,
   kicker,
+  withLanguage = true,
 }: {
   title: string;
   lead?: string;
   kicker?: string;
+  withLanguage?: boolean;
 }) {
   return (
     <View style={styles.wrap}>
@@ -18,7 +20,7 @@ export function ScreenHeader({
           {kicker ? <Text style={styles.kicker}>{kicker}</Text> : null}
           <Text style={styles.title}>{title}</Text>
         </View>
-        <LanguageToggle />
+        {withLanguage ? <LanguageToggle /> : null}
       </View>
       {lead ? <Text style={styles.lead}>{lead}</Text> : null}
     </View>

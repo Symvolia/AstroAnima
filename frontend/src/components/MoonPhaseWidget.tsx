@@ -22,9 +22,9 @@ export function MoonPhaseWidget({ moon }: { moon: MoonSnapshot }) {
     <View style={styles.card}>
       <View style={styles.row}>
         <Svg width={88} height={88}>
-          <Circle cx={44} cy={44} r={36} fill="#0B0A18" stroke={colors.gold} strokeWidth={1} />
-          <Circle cx={44} cy={44} r={36} fill="#F4E7C3" opacity={0.15} />
-          <Path d={moonPath(moon.illumination, waxing)} fill="#F4E7C3" opacity={0.92} />
+          <Circle cx={44} cy={44} r={36} fill="#050208" stroke={colors.gold} strokeWidth={1} />
+          <Circle cx={44} cy={44} r={36} fill="#E4D4FF" opacity={0.12} />
+          <Path d={moonPath(moon.illumination, waxing)} fill="#E4D4FF" opacity={0.92} />
         </Svg>
         <View style={styles.info}>
           <Text style={styles.kicker}>{copy.moon.kicker}</Text>

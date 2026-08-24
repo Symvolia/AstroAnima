@@ -133,6 +133,38 @@ export function calculateTransits(
   return aspects.sort((a, b) => a.orb - b.orb).slice(0, 18);
 }
 
+export function calculateSynastry(
+  chartA: PlanetPosition[],
+  chartB: PlanetPosition[],
+  lang: Lang = 'it',
+): Aspect[] {
+  const aspects: Aspect[] = [];
+  for (const a of chartA) {
+    if (a.id === 'northnode') continue;
+    for (const b of chartB) {
+      if (b.id === 'northnode') continue;
+      const sep = angularSep(a.longitude, b.longitude);
+      for (const def of ASPECT_DEFS) {
+        const orb = Math.abs(sep - def.angle);
+        if (orb <= def.orb * 0.85) {
+          aspects.push({
+            planetA: a.id,
+            planetB: b.id,
+            type: def.type,
+            angle: def.angle,
+            orb: Number(orb.toFixed(2)),
+            applying: true,
+            harmonious: def.harmonious,
+            description: aspectLine(a.id, b.id, def.type, aspectEffect(def.type, lang), false, lang),
+          });
+          break;
+        }
+      }
+    }
+  }
+  return aspects.sort((x, y) => x.orb - y.orb).slice(0, 16);
+}
+
 export function energyFromAspects(aspects: Aspect[]): number {
   let score = 5.4;
   for (const a of aspects) {

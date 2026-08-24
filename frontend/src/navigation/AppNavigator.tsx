@@ -9,6 +9,7 @@ import { LanguageToggle } from '../components/LanguageToggle';
 import { BirthChartScreen } from '../screens/BirthChartScreen';
 import { DailyReadingScreen } from '../screens/DailyReadingScreen';
 import { EclipseScreen } from '../screens/EclipseScreen';
+import { FriendsScreen } from '../screens/FriendsScreen';
 import { HomeScreen } from '../screens/HomeScreen';
 import { MeaningsScreen } from '../screens/MeaningsScreen';
 import { MoreScreen } from '../screens/MoreScreen';
@@ -183,6 +184,7 @@ export function AppNavigator() {
             <Root.Screen name="Wisdom" component={WisdomScreen} options={stackHeader(copy.stack.wisdom)} />
             <Root.Screen name="Meanings" component={MeaningsScreen} options={stackHeader(copy.stack.meanings)} />
             <Root.Screen name="Profile" component={ProfileScreen} options={stackHeader(copy.stack.profile)} />
+            <Root.Screen name="Friends" component={FriendsScreen} options={stackHeader(copy.stack.friends)} />
           </>
         ) : (
           <Root.Screen name="Onboarding" component={OnboardingScreen} />

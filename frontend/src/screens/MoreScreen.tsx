@@ -14,6 +14,7 @@ export function MoreScreen() {
   const profile = useStore((s) => s.profile);
   const natal = useStore((s) => s.natal);
   const links = [
+    { route: 'Friends', title: copy.more.friends, subtitle: copy.more.friendsSub },
     { route: 'Meanings', title: copy.more.meanings, subtitle: copy.more.meaningsSub },
     { route: 'SkyMap', title: copy.more.sky, subtitle: copy.more.skySub },
     { route: 'Eclipse', title: copy.more.eclipse, subtitle: copy.more.eclipseSub },

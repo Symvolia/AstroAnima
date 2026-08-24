@@ -123,7 +123,7 @@ function CalendarModal({
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose}>
-        <Pressable style={styles.sheet} onPress={() => undefined}>
+        <Pressable style={styles.calSheet} onPress={() => undefined}>
           <View style={styles.nav}>
             <Pressable accessibilityRole="button" accessibilityLabel={copy.form.prevYear} onPress={() => setCursor((c) => ({ ...c, year: c.year - 1 }))} style={styles.navBtn}>
               <Text style={styles.navTxt}>«</Text>
@@ -203,7 +203,7 @@ function TimeModal({
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose}>
-        <Pressable style={styles.sheet} onPress={() => undefined}>
+        <Pressable style={styles.timeSheet} onPress={() => undefined}>
           <Text style={styles.monthTitle}>{copy.form.chooseTime}</Text>
           <Text style={styles.preview}>
             {pad2(h)}:{pad2(m)}
@@ -270,55 +270,68 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.62)',
     justifyContent: 'center',
-    padding: 18,
+    alignItems: 'center',
+    padding: 16,
   },
-  sheet: {
+  calSheet: {
+    width: '100%',
+    maxWidth: 300,
     backgroundColor: colors.surfaceSolid,
-    borderRadius: radii.lg,
+    borderRadius: radii.md,
     borderWidth: 1,
     borderColor: colors.gold,
-    padding: 16,
-    gap: 10,
+    padding: 12,
+    gap: 6,
+  },
+  timeSheet: {
+    width: '100%',
+    maxWidth: 280,
+    backgroundColor: colors.surfaceSolid,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.gold,
+    padding: 12,
+    gap: 8,
   },
   nav: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  navBtn: { width: 32, height: 40, alignItems: 'center', justifyContent: 'center' },
-  navTxt: { color: colors.gold, fontSize: 24, lineHeight: 28 },
-  monthTitle: { color: colors.cream, fontSize: 16, fontFamily: 'Georgia', textAlign: 'center', flex: 1 },
+  navBtn: { width: 28, height: 28, alignItems: 'center', justifyContent: 'center' },
+  navTxt: { color: colors.gold, fontSize: 18, lineHeight: 22 },
+  monthTitle: { color: colors.cream, fontSize: 14, fontFamily: 'Georgia', textAlign: 'center', flex: 1 },
   weekRow: { flexDirection: 'row' },
-  weekDay: { width: '14.28%', textAlign: 'center', color: colors.gold, fontSize: 11 },
+  weekDay: { width: '14.28%', textAlign: 'center', color: colors.gold, fontSize: 10 },
   grid: { flexDirection: 'row', flexWrap: 'wrap' },
   cell: {
     width: '14.28%',
-    aspectRatio: 1,
+    height: 32,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  cellOn: { backgroundColor: colors.gold, borderRadius: 18 },
+  cellOn: { backgroundColor: colors.gold, borderRadius: 10 },
   cellOff: { opacity: 0.28 },
-  cellTxt: { color: colors.cream, fontSize: 15 },
+  cellTxt: { color: colors.cream, fontSize: 13 },
   cellTxtOn: { color: colors.night, fontWeight: '700' },
   cellTxtOff: { color: colors.muted },
-  close: { alignItems: 'center', paddingVertical: 8 },
-  closeTxt: { color: colors.muted },
-  preview: { color: colors.goldSoft, fontSize: 36, textAlign: 'center', fontVariant: ['tabular-nums'] },
-  timeCols: { flexDirection: 'row', alignItems: 'center', gap: 8, height: 260 },
+  close: { alignItems: 'center', paddingVertical: 4 },
+  closeTxt: { color: colors.muted, fontSize: 13 },
+  preview: { color: colors.goldSoft, fontSize: 28, textAlign: 'center', fontVariant: ['tabular-nums'] },
+  timeCols: { flexDirection: 'row', alignItems: 'center', gap: 6, height: 168 },
   timeCol: { flex: 1 },
-  colLabel: { color: colors.gold, textAlign: 'center', marginBottom: 6, fontSize: 12, letterSpacing: 1 },
-  colScroll: { maxHeight: 220 },
-  colContent: { paddingVertical: 8, gap: 4 },
-  colon: { color: colors.gold, fontSize: 28, marginTop: 18 },
+  colLabel: { color: colors.gold, textAlign: 'center', marginBottom: 4, fontSize: 11, letterSpacing: 1 },
+  colScroll: { maxHeight: 140 },
+  colContent: { paddingVertical: 4, gap: 2 },
+  colon: { color: colors.gold, fontSize: 22, marginTop: 14 },
   timeItem: {
-    paddingVertical: 8,
+    paddingVertical: 5,
     borderRadius: radii.sm,
     alignItems: 'center',
   },
   timeItemOn: { backgroundColor: colors.gold },
-  timeItemTxt: { color: colors.cream, fontSize: 18, fontVariant: ['tabular-nums'] },
+  timeItemTxt: { color: colors.cream, fontSize: 15, fontVariant: ['tabular-nums'] },
   timeItemTxtOn: { color: colors.night, fontWeight: '700' },
   confirm: {
     backgroundColor: colors.gold,
     borderRadius: radii.full,
-    paddingVertical: 12,
+    paddingVertical: 8,
     alignItems: 'center',
     marginTop: 4,
   },

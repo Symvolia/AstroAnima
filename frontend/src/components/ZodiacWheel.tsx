@@ -27,9 +27,9 @@ export function ZodiacWheel({ chart, size = 340 }: Props) {
 
   return (
     <Svg width={size} height={size}>
-      <Circle cx={cx} cy={cy} r={outer} stroke={colors.gold} strokeWidth={1.5} fill="rgba(7,4,20,0.55)" />
-      <Circle cx={cx} cy={cy} r={inner} stroke="rgba(212,175,55,0.35)" strokeWidth={1} fill="none" />
-      <Circle cx={cx} cy={cy} r={aspectR} stroke="rgba(155,126,217,0.25)" strokeWidth={1} fill="none" />
+      <Circle cx={cx} cy={cy} r={outer} stroke={colors.gold} strokeWidth={1.5} fill="rgba(0,0,0,0.55)" />
+      <Circle cx={cx} cy={cy} r={inner} stroke="rgba(196,160,255,0.35)" strokeWidth={1} fill="none" />
+      <Circle cx={cx} cy={cy} r={aspectR} stroke="rgba(123,44,191,0.35)" strokeWidth={1} fill="none" />
 
       {Array.from({ length: 12 }).map((_, i) => {
         const p = toXY(i * 30 + 15, outer - 16);

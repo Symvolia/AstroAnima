@@ -183,6 +183,88 @@ export function luckyMoment(energy: number, illumination: number, lang: Lang): s
   return m.afternoon;
 }
 
+export function socialUpdate(moonSign: string, mercuryRetro: boolean, lang: Lang): string {
+  const s = tSign(moonSign, lang);
+  if (lang === 'en') {
+    return mercuryRetro
+      ? `Words return before they land. With the Moon in ${s}, say less, and mean it.`
+      : `The circle around you answers the Moon in ${s}. Choose one conversation worth the hour.`;
+  }
+  return mercuryRetro
+    ? `Le parole tornano prima di arrivare. Con la Luna in ${s}, di’ meno, e intendilo.`
+    : `La cerchia risponde alla Luna in ${s}. Scegli un solo colloquio che valga l’ora.`;
+}
+
+export function dayCounsel(
+  energy: number,
+  hasHardTransit: boolean,
+  mercuryRetro: boolean,
+  lang: Lang,
+): { favor: string[]; withhold: string[] } {
+  if (lang === 'en') {
+    return {
+      favor: [
+        energy >= 7 ? 'One completed gesture, not ten begun.' : 'Care of the body before the task.',
+        hasHardTransit ? 'Name the friction; do not decorate it.' : 'A request spoken without theatre.',
+      ],
+      withhold: [
+        mercuryRetro ? 'Do not sign, send, or launch what cannot be revised.' : 'Do not perform certainty you do not hold.',
+        hasHardTransit ? 'Do not force a closing. The sky is already doing that work.' : 'Do not scatter the hour across too many rooms.',
+      ],
+    };
+  }
+  return {
+    favor: [
+      energy >= 7 ? 'Un gesto compiuto, non dieci iniziati.' : 'La cura del corpo prima del compito.',
+      hasHardTransit ? 'Nomina l’attrito; non decorarlo.' : 'Una richiesta detta senza teatro.',
+    ],
+    withhold: [
+      mercuryRetro ? 'Non firmare, inviare o lanciare ciò che non può essere rivisto.' : 'Non recitare una certezza che non possiedi.',
+      hasHardTransit ? 'Non forzare una chiusura. Il cielo sta già facendo quel lavoro.' : 'Non disperdere l’ora in troppe stanze.',
+    ],
+  };
+}
+
+export function synastryNote(
+  sunA: string,
+  sunB: string,
+  moonA: string,
+  moonB: string,
+  harmonious: number,
+  tense: number,
+  lang: Lang,
+): { bond: string; desire: string } {
+  const a = tSign(sunA, lang);
+  const b = tSign(sunB, lang);
+  const ma = tSign(moonA, lang);
+  const mb = tSign(moonB, lang);
+  const lean = harmonious >= tense ? 'flow' : 'friction';
+  if (lang === 'en') {
+    return {
+      bond: `Sun ${a} meeting Sun ${b}. Moon ${ma} answering Moon ${mb}. ${
+        lean === 'flow'
+          ? 'The current between you is usable: stay honest, and it holds.'
+          : 'The current is instructive: the other names what you avoid.'
+      }`,
+      desire:
+        lean === 'flow'
+          ? 'Desire asks for presence, not proof. Let the bond be simple before it is grand.'
+          : 'Desire sharpens. Name the need without turning it into a trial.',
+    };
+  }
+  return {
+    bond: `Sole ${a} incontra Sole ${b}. Luna ${ma} risponde a Luna ${mb}. ${
+      lean === 'flow'
+        ? 'La corrente tra voi è usabile: restate onesti, e tiene.'
+        : 'La corrente istruisce: l’altro nomina ciò che eviti.'
+    }`,
+    desire:
+      lean === 'flow'
+        ? 'Il desiderio chiede presenza, non prova. Lascia che il vincolo sia semplice prima di essere grande.'
+        : 'Il desiderio affila. Di’ il bisogno senza farne un processo.',
+  };
+}
+
 export function luckyColor(dateIso: string, lang: Lang): string {
   const day = new Date(dateIso).getDate();
   return LUCKY_COLORS[day % LUCKY_COLORS.length][lang];
