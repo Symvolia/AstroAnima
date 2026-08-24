@@ -1,0 +1,50 @@
+{
+  "expo": {
+    "name": "AstroAnima",
+    "slug": "astroanima",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "scheme": "astroanima",
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "AstroAnima usa la posizione per alba, tramonto e mappa del cielo."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#1A0B2E",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "permissions": ["RECEIVE_BOOT_COMPLETED", "SCHEDULE_EXACT_ALARM"]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-font",
+      "@react-native-community/datetimepicker",
+      [
+        "expo-notifications",
+        {
+          "color": "#D4AF37"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "AstroAnima usa la posizione per alba, tramonto e mappa del cielo."
+        }
+      ]
+    ],
+    "extra": {
+      "apiUrl": "http://127.0.0.1:4000"
+    }
+  }
+}
