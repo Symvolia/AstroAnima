@@ -1,63 +1,60 @@
 # AstroAnima
 
-App di astrologia quotidiana: tema natale, transiti, lettura del giorno, mappa del cielo ed eclissi.
+A cross-platform daily astrology app: natal chart, live transits, daily reading, sky map and eclipses. All astronomical positions are computed locally, so the app works fully offline-first; cloud sync and AI-written readings are optional add-ons.
+
+## Features
+
+- **Natal chart** rendered as an SVG wheel, with aspects and Placidus houses
+- **Real-time planets** and a sky map computed with [astronomy-engine](https://github.com/cosinekitty/astronomy)
+- **Daily reading**, generated each morning by a scheduled job (GPT-4o when configured, otherwise a built-in text engine)
+- **Eclipses**, moon phases, "planet of the day" and life-area energy
+- **Onboarding** with birth data and city autocomplete
+- Optional **Firebase** auth and Firestore persistence; without it, data stays on the device
 
 ## Stack
 
-- Frontend: React Native + Expo (TypeScript)
-- Backend: Node.js + Express
-- Calcoli: [astronomy-engine](https://github.com/cosinekitty/astronomy)
-- AI (opzionale): OpenAI GPT-4o
-- Auth/DB (opzionale): Firebase Authentication + Firestore
+| Layer | Technologies |
+| --- | --- |
+| Mobile / web app | React Native, Expo, TypeScript, React Navigation |
+| API | Node.js, Express, node-cron |
+| Data & AI (optional) | Firebase Authentication, Firestore, OpenAI |
 
-L’app funziona anche **senza** Firebase e OpenAI: i dati restano in locale e le letture usano un motore poetico interno.
+## Project structure
 
-## Avvio rapido
+```
+frontend/   Expo app (iOS, Android, web)
+backend/    Express API + daily reading cron job
+```
 
-### Backend
+## Getting started
 
 ```bash
+# API — http://127.0.0.1:4000
 cd backend
 cp .env.example .env
 npm install
 npm run dev
-```
 
-API su `http://127.0.0.1:4000`. Cron letture: ogni giorno alle 06:00 (timezone `CRON_TZ`, default Europe/Rome).
-
-### Frontend
-
-```bash
+# App
 cd frontend
 npm install
-npx expo start
+npx expo start      # open in Expo Go, or press "w" for the web build
 ```
 
-Poi apri Expo Go (iOS/Android) oppure premi `w` per il web.
+On a physical phone, set `extra.apiUrl` in `frontend/app.json` to your computer's LAN IP (e.g. `http://192.168.x.x:4000`).
 
-Su un telefono fisico, in `frontend/app.json` imposta `extra.apiUrl` con l’IP del computer (`http://192.168.x.x:4000`) al posto di `127.0.0.1`.
-
-## Variabili d’ambiente
+## Configuration
 
 Backend (`backend/.env`):
 
-- `OPENAI_API_KEY` — per generare letture GPT
-- `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, `FIREBASE_PRIVATE_KEY` — per salvare letture e profili su Firestore
+| Variable | Purpose |
+| --- | --- |
+| `OPENAI_API_KEY` | AI-generated readings |
+| `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, `FIREBASE_PRIVATE_KEY` | Save readings and profiles in Firestore |
+| `CRON_TZ` | Timezone of the 06:00 daily job (default `Europe/Rome`) |
 
-Frontend (`frontend/app.json` → `extra`, oppure `EXPO_PUBLIC_FIREBASE_*`):
+Frontend: Firebase web config in `frontend/app.json` → `extra`, or as `EXPO_PUBLIC_FIREBASE_*` variables.
 
-- `firebaseApiKey`, `firebaseAuthDomain`, `firebaseProjectId`, `firebaseStorageBucket`, `firebaseMessagingSenderId`, `firebaseAppId`
+## Author
 
-Luogo di nascita: autocomplete su un elenco di città (Italia + città del mondo). Puoi collegare Google Places in seguito con una API key.
-
-## Schermate
-
-1. Onboarding (nascita, segno, preferenze)
-2. Home (luna, sole, energia, aree della vita, pianeta del giorno, eventi)
-3. Tema natale (ruota SVG, aspetti, case Placidus)
-4. Lettura quotidiana
-5. Pianeti in tempo reale
-6. Mappa del cielo
-7. Eclissi
-8. Saggezza
-9. Profilo
+**Nicolò Peruzzi** · [npdevelopment.xyz](https://npdevelopment.xyz)
